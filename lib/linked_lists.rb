@@ -1,8 +1,35 @@
 class LinkedList
+  attr_accessor :size
+  def initialize
+    @head = nil
+    @tail = nil
+    @size = 0
+  end
+
+  def pre_pend(value)
+    entry = Node.new(value)
+    if @head == nil
+      @head = entry
+      @tail = entry
+    else
+      entry.next = @head
+      @head = entry
+    end
+    self.size +=1
+  end
 
   def append(value)
-    last = Node.new(value)
+    entry = Node.new(value)
+   if @head == nil
+    @head = entry
+    @tail = entry
+   else
+    @tail.next = entry
+    @tail = entry
+   end
+   self.size +=1
   end
+
 
 end
 
@@ -17,5 +44,5 @@ end
 
 
 my_list = LinkedList.new
-my_list.append('kimy')
-puts my_list
+my_list.pre_pend('kimy')
+puts my_list.size
