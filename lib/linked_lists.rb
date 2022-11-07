@@ -1,5 +1,6 @@
 class LinkedList
   attr_accessor :size
+
   def initialize
     @head = nil
     @tail = nil
@@ -8,26 +9,25 @@ class LinkedList
 
   def pre_pend(value)
     entry = Node.new(value)
-    if @head == nil
+    if @head.nil?
       @head = entry
       @tail = entry
     else
       entry.next = @head
       @head = entry
     end
-    self.size +=1
+    self.size += 1
   end
 
   def append(value)
     entry = Node.new(value)
-   if @head == nil
-    @head = entry
+    if @head.nil?
+      @head = entry
+    else
+      @tail.next = entry
+    end
     @tail = entry
-   else
-    @tail.next = entry
-    @tail = entry
-   end
-   self.size +=1
+    self.size += 1
   end
 
   def head
@@ -41,20 +41,36 @@ class LinkedList
   def at(index)
     temp = @head
     temp_index = 0
-    while temp != nil
+    until temp.nil?
       if temp_index == index
         puts "#{temp.value}"
         return
       end
-      temp_index +=1
+      temp_index += 1
       temp = temp.next
     end
   end
 
+  def pop
+    if @head == @tail
+      @head = nil
+    else
+      temp = @head
+      until temp.nil?
+        if temp.next == @tail
+          temp.next = nil
+          @tail = temp
+          self.size -= 1
+          return
+        end
+        temp = temp.next
+      end
+    end
+  end
 end
 
 class Node
-  attr_accessor :value, :next, :to_s
+  attr_accessor :value, :next
 
   def initialize(value)
     @value = value
@@ -62,18 +78,18 @@ class Node
   end
 
   def to_s
-    check = -> {if @next == nil then "value nil" else @next.value end}
+    check = -> { @next.nil? ? 'value nil' : @next.value }
     puts "[value: #{value}|next: #{check.call}]"
   end
 end
-
 
 my_list = LinkedList.new
 my_list.pre_pend('kim')
 my_list.append('jack')
 my_list.append('miriti')
-# puts my_list.size
+puts my_list.size
 # puts my_list.head
-# puts my_list.tail
-my_list.at(0)
-
+puts my_list.tail
+# my_list.pop
+puts my_list.tail
+puts my_list.size
