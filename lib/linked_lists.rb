@@ -38,6 +38,19 @@ class LinkedList
     @tail.to_s
   end
 
+  def at(index)
+    temp = @head
+    temp_index = 0
+    while temp != nil
+      if temp_index == index
+        puts "#{temp.value}"
+        return
+      end
+      temp_index +=1
+      temp = temp.next
+    end
+  end
+
 end
 
 class Node
@@ -59,6 +72,8 @@ my_list = LinkedList.new
 my_list.pre_pend('kim')
 my_list.append('jack')
 my_list.append('miriti')
-puts my_list.size
-puts my_list.head
-puts my_list.tail
+# puts my_list.size
+# puts my_list.head
+# puts my_list.tail
+my_list.at(0)
+
