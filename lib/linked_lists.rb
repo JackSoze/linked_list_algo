@@ -52,20 +52,40 @@ class LinkedList
   end
 
   def pop
-    if @head == @tail
-      @head = nil
-    else
-      temp = @head
-      until temp.nil?
-        if temp.next == @tail
-          temp.next = nil
-          @tail = temp
-          self.size -= 1
-          return
-        end
-        temp = temp.next
+    temp = @head
+    until temp.nil?
+      if temp.next == @tail
+        temp.next = nil
+        @tail = temp
+        self.size -= 1
+        return
       end
+      temp = temp.next
     end
+  end
+
+  def contains?(key)
+    temp = @head
+    result = nil
+    until temp.nil?
+      result = true if temp.value == key
+      temp = temp.next
+    end
+    result = false if result.nil?
+    puts result
+  end
+
+  def find(key)
+    temp = @head
+    index = 0
+    value_index = []
+    until temp.nil?
+      value_index.push(index) if temp.value == key
+      temp = temp.next
+      index += 1
+    end
+    result = -> { value_index.nil? ? nil : value_index }
+    puts result.call
   end
 end
 
@@ -87,9 +107,10 @@ my_list = LinkedList.new
 my_list.pre_pend('kim')
 my_list.append('jack')
 my_list.append('miriti')
-puts my_list.size
+# puts my_list.size
 # puts my_list.head
-puts my_list.tail
-# my_list.pop
-puts my_list.tail
+# puts my_list.tail
+# # my_list.pop
+# puts my_list.tail
 puts my_list.size
+my_list.find('jack')
