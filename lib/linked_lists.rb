@@ -75,6 +75,22 @@ class LinkedList
     puts result
   end
 
+  def making_it
+    puts "we'll all make it brah!!!"
+    destination = @kuomoka
+    while alive
+      if current_state == temporary_defeat
+        keep_hustling_hard
+        deep_work
+        focus
+      elsif current_state = made_it
+        help_next_one_in_line
+        stay_humble
+      end
+      stay_grateful
+    end
+  end
+
   def find(key)
     temp = @head
     index = 0
