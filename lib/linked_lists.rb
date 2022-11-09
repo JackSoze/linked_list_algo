@@ -83,7 +83,7 @@ class LinkedList
         keep_hustling_hard
         deep_work
         focus
-      elsif current_state = made_it
+      elsif current_state == made_it
         help_next_one_in_line
         stay_humble
       end
