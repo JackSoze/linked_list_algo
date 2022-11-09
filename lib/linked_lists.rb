@@ -92,11 +92,30 @@ class LinkedList
     temp = @head
     list = []
     until temp.nil?
-      result = temp.nil? ? "nil" : " ( #{temp.value} ) ->"
-      list << result
+      list << " ( #{temp.value} ) ->"
+      list << ' nil ' if temp.next.nil?
       temp = temp.next
     end
-    p list.join()
+    p list.join
+  end
+
+  def insert_at(key, index)
+    temp = @head
+    temp_index = 0
+    entry = Node.new(key)
+    until temp.nil?
+      if temp_index.zero? && index.zero?
+        entry.next = temp
+        @head = entry
+        return
+      elsif (temp_index + 1) == index
+        entry.next = temp.next
+        temp.next = entry
+        return
+      end
+      temp = temp.next
+      temp_index += 1
+    end
   end
 
 end
@@ -119,4 +138,8 @@ my_list = LinkedList.new
 my_list.pre_pend('kim')
 my_list.append('jack')
 my_list.append('miriti')
+my_list.append('kamonyo')
+my_list.to_s
+# my_list.insert_at('kamonyo',1)
+my_list.insert_at('soze', 4)
 my_list.to_s
