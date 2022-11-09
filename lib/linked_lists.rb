@@ -75,22 +75,6 @@ class LinkedList
     puts result
   end
 
-  def making_it
-    puts "we'll all make it brah!!!"
-    destination = @kuomoka
-    while alive
-      if current_state == temporary_defeat
-        keep_hustling_hard
-        deep_work
-        focus
-      elsif current_state == made_it
-        help_next_one_in_line
-        stay_humble
-      end
-      stay_grateful
-    end
-  end
-
   def find(key)
     temp = @head
     index = 0
@@ -103,6 +87,18 @@ class LinkedList
     result = -> { value_index.nil? ? nil : value_index }
     puts result.call
   end
+
+  def to_s
+    temp = @head
+    list = []
+    until temp.nil?
+      result = temp.nil? ? "nil" : " ( #{temp.value} ) ->"
+      list << result
+      temp = temp.next
+    end
+    p list.join()
+  end
+
 end
 
 class Node
@@ -123,10 +119,4 @@ my_list = LinkedList.new
 my_list.pre_pend('kim')
 my_list.append('jack')
 my_list.append('miriti')
-# puts my_list.size
-# puts my_list.head
-# puts my_list.tail
-# # my_list.pop
-# puts my_list.tail
-puts my_list.size
-my_list.find('jack')
+my_list.to_s
