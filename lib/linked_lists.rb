@@ -1,3 +1,4 @@
+# this creates instances of the linkedlist
 class LinkedList
   attr_accessor :size
 
@@ -134,6 +135,7 @@ class LinkedList
   end
 end
 
+# this creates node instances to be contained in the linked list
 class Node
   attr_accessor :value, :next
 
