@@ -118,6 +118,26 @@ class LinkedList
     end
   end
 
+  def remove_at(index)
+    if @head.nil?
+      raise 'cannot delete'
+    elsif index == 0
+      @head = @head.next
+    end
+
+    curr = @head
+    prev = nil
+    key_index = 0
+    until curr.nil?
+      if key_index == index
+        prev.next = curr.next
+      else
+        prev = curr
+      end
+      curr = curr.next
+      key_index += 1
+    end
+  end
 end
 
 class Node
@@ -142,4 +162,6 @@ my_list.append('kamonyo')
 my_list.to_s
 # my_list.insert_at('kamonyo',1)
 my_list.insert_at('soze', 4)
+my_list.to_s
+my_list.remove_at(2)
 my_list.to_s
